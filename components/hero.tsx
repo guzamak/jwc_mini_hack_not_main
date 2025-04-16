@@ -167,7 +167,7 @@ export default function Hero() {
             <Image
               src="/logo/logo-jwcminihack-08.png"
               alt="Hackathon Banner"
-              width={400}
+              width={350}
               height={200}
             />
           </h1>
