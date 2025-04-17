@@ -39,7 +39,7 @@ export default function Form({ onLogout }: FormProps) {
   const [firstname, setFirstname] = useState<string>();
   const [surname, setsurname] = useState<string>();
   const [nickname, setNickname] = useState<string>();
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState<Date | null>();
   const [email, setEmail] = useState<string>();
   const [phone, setPhone] = useState<string>();
   const [province, setProvince] = useState<string>();
@@ -62,7 +62,7 @@ export default function Form({ onLogout }: FormProps) {
           setFirstname(data.firstname || "");
           setsurname(data.surname || "");
           setNickname(data.nickname || "");
-          setDate(data.date ? new Date(data.date) : undefined);
+          setDate(data.date || null);
           setEmail(data.email || "");
           setPhone(data.phone || "");
           setProvince(data.province || "");
