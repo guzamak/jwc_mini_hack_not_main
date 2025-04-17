@@ -179,7 +179,7 @@ const TimelineWithSpiral = () => {
         </div>
 
         {/* timeline */}
-        <div className="container flex flex-col justify-center items-center ">
+        <div className="container flex flex-col justify-center items-center px-6">
           {timelineItems.map((item, index) => (
             <div
               key={index}
