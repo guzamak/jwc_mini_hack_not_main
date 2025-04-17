@@ -156,8 +156,9 @@ export default function Hero() {
     >
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 opacity-10" />
       <div className="container h-full mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2">
+
         <div
-          className="text-left max-w-2xl h-full flex flex-col justify-center"
+          className="text-left max-w-2xl h-full flex flex-col justify-center top-1/2 translate-y-1/2 md:translate-y-0 md:top-0 z-50"
           ref={canvasboxRef}
         >
             {/* <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
@@ -177,7 +178,7 @@ export default function Hero() {
             <button className="px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transform hover:scale-105 transition">
               Register Now
             </button>
-            <button className="px-8 py-3 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-100 transform hover:scale-105 transition">
+            <button className="px-8 py-3 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-100 transform hover:scale-105 transition bg-gray-50">
               Learn More
             </button>
           </div>
