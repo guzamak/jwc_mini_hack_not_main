@@ -81,7 +81,6 @@ export default function Form({ onLogout }: FormProps) {
   }, []);
 
   const saveData = async () => {
-    if (checkbox) {
       await fetch("/api/form", {
         method: "POST",
         headers: {
@@ -104,7 +103,6 @@ export default function Form({ onLogout }: FormProps) {
           checkbox,
         }),
       });
-    }
   };
   const onCheckboxChange = (e: boolean) => {
     setCheckbox(e);
