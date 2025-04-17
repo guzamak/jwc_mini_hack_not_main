@@ -22,6 +22,7 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
+import OnloadProvider from "@/components/onloadProvider";
 
 export default async function Home() {
   return (
@@ -33,11 +34,12 @@ export default async function Home() {
     //     <Sponsor />
     //     <Footer /> */}
     //   </div>
-    <div className="min-h-screen bg-gradient-to-b font-IBM-Plex flex flex-col justify-center">
+    <div className="min-h-screen bg-gradient-to-b font-IBM-Plex flex flex-col justify-center relative">
+      <OnloadProvider/>
       {/* <!-- Header --> */}
       <header
         id="header"
-        className="w-screen bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm z-50 border-b border-gray-100 font-Playfair-Display italic"
+        className="w-screen bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm border-b border-gray-100 font-Playfair-Display italic"
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
