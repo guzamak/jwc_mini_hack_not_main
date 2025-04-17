@@ -21,7 +21,7 @@ import {
   faGoogle,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import Image from 'next/image'
+import Image from "next/image";
 
 export default async function Home() {
   return (
@@ -33,7 +33,7 @@ export default async function Home() {
     //     <Sponsor />
     //     <Footer /> */}
     //   </div>
-    <div className="min-h-screen bg-gradient-to-b font-IBM-Plex ">
+    <div className="min-h-screen bg-gradient-to-b font-IBM-Plex flex flex-col justify-center">
       {/* <!-- Header --> */}
       <header
         id="header"
@@ -45,11 +45,19 @@ export default async function Home() {
                     HACK/2025
                 </div> */}
             <Image
-        src="/logo/logo-jwcminihack-07.png"
-        alt="Hackathon Banner"
-        width={200}
-        height={200}
-      />
+              src="/assert/nav logo.svg"
+              alt="Hackathon Banner"
+              width={200}
+              height={200}
+              className="hidden md:block"
+            />
+             <Image
+                src="/assert/mini logo.svg"
+                alt="Hackathon Banner"
+                width={100}
+                height={100}
+                className="block md:hidden"
+              />
             <div className="hidden md:flex space-x-8">
               <a href="#about" className="text-gray-600 hover:text-gray-900">
                 About
@@ -98,12 +106,12 @@ export default async function Home() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-                <Image
-                                              src="/logo/logo-jwcminihack-06.png"
-                                              alt="Hackathon Banner"
-                                              width={200}
-                                              height={200}
-                                            />
+              <Image
+                src="/assert/footer logo.svg"
+                alt="Hackathon Banner"
+                width={200}
+                height={200}
+              />
               <p className="text-gray-400">
                 The biggest hackathon event of 2025.
               </p>

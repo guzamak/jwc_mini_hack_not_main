@@ -411,7 +411,7 @@ export default function Form({ onLogout }: FormProps) {
                   ></textarea>
                 </div>
                 <Button
-                  className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600 rounded-lg cursor-pointer"
+                  className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600 rounded-lg cursor-pointer hover:scale-105"
                   onClick={onLogout}
                 >
                   ออกจากระบบ
@@ -446,19 +446,19 @@ export default function Form({ onLogout }: FormProps) {
                       {Array.from({ length: Math.ceil(quizz.length / 3) }).map(
                         (_, i) => (
                           <CarouselItem key={i}>
-                            <div>
-                              <div className="border-0 shadow-none">
-                                <CardContent className="flex flex-col gap-5 p-0">
+                            <div className="h-full">
+                              <div className="border-0 shadow-none h-full">
+                                <CardContent className="flex flex-col gap-5 p-0 h-full">
                                   {Array.from({ length: 3 }).map(
                                     (_, j) =>
                                       3 * i + j < quizz.length && (
-                                        <div key={j} className="space-y-6">
+                                        <div key={j} className={`space-y-6 ${3 * i + j == quizz.length-1 && "h-full" }`}>
                                           <h1 className="block mb-2 font-medium ">
                                             {quizz[3 * i + j]}
                                           </h1>
 
                                           <textarea
-                                            className="pointer-events-auto w-full px-4 py-3 rounded-xl border border-gray-200 focus-visible:ring-0 focus:outline-0 text-gray-600 "
+                                            className={`pointer-events-auto w-full px-4 py-3 rounded-xl border border-gray-200 focus-visible:ring-0 focus:outline-0 text-gray-600 ${3 * i + j == quizz.length-1 && "h-[75%]" }`} 
                                             defaultValue={ans[3 * i + j]}
                                             rows={4}
                                             onChange={(e) => {
@@ -499,7 +499,7 @@ export default function Form({ onLogout }: FormProps) {
                 </div>
                 <Button
                   onClick={saveData}
-                  className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600  rounded-lg cursor-pointer"
+                  className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600  rounded-lg cursor-pointer hover:scale-105"
                 >
                   บันทึกข้อมูล
                 </Button>

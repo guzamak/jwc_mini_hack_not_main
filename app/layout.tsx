@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="overflow-x-hidden h-full text-base-content w-screen">
+      <body className="overflow-x-hidden h-full text-base-content w-screen custom-cursor">
         {children}
       </body>
     </html>

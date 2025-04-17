@@ -6,3 +6,6 @@
     --font-IBM-Plex: IBM Plex Sans Thai, "sans-serif";
     --font-Playfair-Display : "Playfair Display", serif;
 }
+.custom-cursor {
+    cursor: url('/assert/cursor.svg'), auto; /* adjust path and fallback */
+  }

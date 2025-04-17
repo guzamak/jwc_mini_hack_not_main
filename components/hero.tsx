@@ -160,17 +160,16 @@ export default function Hero() {
           className="text-left max-w-2xl h-full flex flex-col justify-center"
           ref={canvasboxRef}
         >
-          <h1 className="text-7xl font-bold mb-6 animate-slide-up">
             {/* <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                             HACK/2025
                         </span> */}
             <Image
-              src="/logo/logo-jwcminihack-08.png"
+              src="/assert/hero logo.svg"
               alt="Hackathon Banner"
               width={350}
               height={200}
+              className=""
             />
-          </h1>
           <p className="text-2xl text-gray-600 mb-8">
             Join the biggest hackathon of 2025. Code, Create, Innovate.
           </p>
