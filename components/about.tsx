@@ -17,7 +17,7 @@ export default function About() {
             height={25}
             className="  "
           />
-          <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display italic">
+          <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display italic">
             About The Event
           </h2>
         </div>
@@ -29,8 +29,7 @@ export default function About() {
               48 Hours of Coding
             </h3>
             <p className="text-gray-600">
-              Immerse yourself in a non-stop coding experience with like-minded
-              developers.
+              การทำโปรเจกต์สุดโหดในเวลา 48 ชั่วโมง
             </p>
           </div>
           <div className="p-8 border-2 border-gray-200 rounded-3xl hover:bg-gray-100 hover:scale-105 duration-200">
@@ -39,17 +38,16 @@ export default function About() {
               1 Page Wonder Theme
             </h3>
             <p className="text-gray-600">
-              Connect with developers from around the globe and build your
-              network.
+              หลายหน้าก็ไม่ได้ หลายใจก็ไม่ดี
             </p>
           </div>
           <div className="p-8 border-2 border-gray-200 rounded-3xl hover:bg-gray-100 hover:scale-105 duration-200">
             <Award className="w-8 h-8 text-gray-300 my-2" />
             <h3 className="text-xl font-bold mb-3 font-Playfair-Display ">
-              $50K in Prizes
+              More Prizes
             </h3>
             <p className="text-gray-600">
-              Compete for amazing prizes and recognition in the tech community.
+              ของรางวัลสุดพิเศษจากพี่ๆ JWC 13 ที่เเสนอบอุ่น
             </p>
           </div>
         </div>

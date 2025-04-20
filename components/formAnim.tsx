@@ -97,7 +97,7 @@ export default function FormAnim() {
   return (
     <div>
       <section
-        id="login"
+        id="register"
         className="bg-gradient-to-br from-gray-50 via-white to-gray-50 relative"
         ref={formSectionRef}
       >
@@ -118,7 +118,7 @@ export default function FormAnim() {
             
             <div className="flex justify-center items-center gap-4 mb-16">
           <User  className="w-8 h-8 text-gray-300 my-2"/>
-          <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display italic">
+          <h2 className="text-3xl md:text-4xl  font-bold text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display italic">
           Login to Continue
           </h2>
         </div>

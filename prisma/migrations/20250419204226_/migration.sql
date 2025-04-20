@@ -1,3 +1,12 @@
+-- CreateEnum
+CREATE TYPE "Prefix" AS ENUM ('นาย', 'นาง', 'นางสาว');
+
+-- CreateEnum
+CREATE TYPE "Grade" AS ENUM ('ม_4', 'ม_5', 'ม_6', 'ปวช');
+
+-- CreateEnum
+CREATE TYPE "UserState" AS ENUM ('acceptList', 'waitingList', 'deniedList', 'Didntcheck');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" TEXT NOT NULL,
@@ -33,8 +42,33 @@ CREATE TABLE "User" (
     "email" TEXT,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
+    "validOnsite" "UserState",
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Form" (
+    "id" TEXT NOT NULL,
+    "imageData" TEXT,
+    "prefix" "Prefix",
+    "firstname" TEXT,
+    "surname" TEXT,
+    "nickname" TEXT,
+    "date" TIMESTAMP(3),
+    "email" TEXT,
+    "phone" TEXT,
+    "province" TEXT,
+    "grade" "Grade",
+    "school" TEXT,
+    "etc" TEXT,
+    "ans" TEXT[],
+    "checkbox" BOOLEAN,
+    "userId" TEXT NOT NULL,
+    "alreadySumbit" BOOLEAN,
+    "submitDate" TIMESTAMP(3),
+
+    CONSTRAINT "Form_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -46,8 +80,14 @@ CREATE UNIQUE INDEX "Session_sessionToken_key" ON "Session"("sessionToken");
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Form_userId_key" ON "Form"("userId");
+
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Form" ADD CONSTRAINT "Form_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

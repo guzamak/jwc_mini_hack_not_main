@@ -34,7 +34,7 @@ export default async function Home() {
     //     <Sponsor />
     //     <Footer /> */}
     //   </div>
-    <div className="min-h-screen bg-gradient-to-b font-IBM-Plex flex flex-col justify-center relative">
+    <div className="min-h-screen bg-gradient-to-b font-IBM-Plex flex flex-col justify-center relative ">
       <OnloadProvider/>
       {/* <!-- Header --> */}
       <header
@@ -49,15 +49,15 @@ export default async function Home() {
             <Image
               src="/assert/nav logo.svg"
               alt="Hackathon Banner"
-              width={200}
-              height={200}
+              width={100}
+              height={100}
               className="hidden md:block"
             />
              <Image
-                src="/assert/mini logo.svg"
+                src="/assert/nav logo.svg"
                 alt="Hackathon Banner"
-                width={100}
-                height={100}
+                width={75}
+                height={75}
                 className="block md:hidden"
               />
             <div className="hidden md:flex space-x-8">
@@ -74,9 +74,9 @@ export default async function Home() {
                 FAQ
               </a>
             </div>
-            <button className="px-6 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-800">
+            <a className="px-6 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-800"  href="#register">
               Join Now
-            </button>
+            </a>
           </div>
         </nav>
       </header>
@@ -103,20 +103,17 @@ export default async function Home() {
       {/* <!-- Footer --> */}
       <footer
         id="footer"
-        className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-12"
+        className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-12 flex justify-center"
       >
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8">
+        <div className="container px-4 flex md:justify-center">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-24">
             <div>
               <Image
                 src="/assert/footer logo.svg"
                 alt="Hackathon Banner"
-                width={200}
-                height={200}
+                width={100}
+                height={100}
               />
-              <p className="text-gray-400">
-                The biggest hackathon event of 2025.
-              </p>
             </div>
             <div>
               <h4 className="font-bold mb-4">Quick Links</h4>
@@ -144,13 +141,7 @@ export default async function Home() {
                 </li>
               </ul>
             </div>
-            <div>
-              <h4 className="font-bold mb-4">Contact</h4>
-              <ul className="space-y-2">
-                <li className="text-gray-400">contact@hack2025.com</li>
-                <li className="text-gray-400">+1 (555) 123-4567</li>
-              </ul>
-            </div>
+      
             <div>
               <h4 className="font-bold mb-4">Follow Us</h4>
               <div className="flex space-x-4">
@@ -174,9 +165,6 @@ export default async function Home() {
                 </a>
               </div>
             </div>
-          </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 HACK/2025. All rights reserved.</p>
           </div>
         </div>
       </footer>

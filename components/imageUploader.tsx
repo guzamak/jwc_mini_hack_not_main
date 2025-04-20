@@ -23,7 +23,6 @@ export default function ImageUploader({ imageData, setImageData }: ImageUploader
       reader.readAsDataURL(file); // convert to base64
     }
   };
-  console.log(imageData)
 
   return (
     <div className="flex flex-col items-center justify-center w-48 h-48 border-2 border-dashed border-gray-300 rounded-xl text-gray-500 hover:border-[#a95dfd] transition-colors duration-200 ">
@@ -46,7 +45,7 @@ export default function ImageUploader({ imageData, setImageData }: ImageUploader
         ) : (
           <div className="w-full h-full flex flex-col justify-center items-center gap-2 group">
             <Upload className="text-gray-300 group-hover:text-gray-400 duration-300"/>
-            <p className="text-gray-300 group-hover:text-gray-400 duration-300">Upload Profile</p>
+            <p className="text-gray-300 group-hover:text-gray-400 duration-300">รูปสำหรับป้ายชื่อ</p>
           </div>
         )}
       </label>

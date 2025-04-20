@@ -1,6 +1,6 @@
 "use client";
 import { icon } from "@fortawesome/fontawesome-svg-core";
-import { Flame, Megaphone, Newspaper, NotebookPen } from "lucide-react";
+import { Check, Flame, Megaphone, Newspaper, NotebookPen } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 
@@ -113,32 +113,43 @@ const TimelineWithSpiral = () => {
   const timelineItems = [
     {
       title: "Registration Opens",
-      date: "January 15, 2025",
+      desc: "เปิดรับสมัคร",
+      date: "20 เมษายน - 30 เมษายน 2568",
       left: true,
       icon: <NotebookPen className="w-6 h-6 text-gray-300 mb-2 " />,
     },
     {
-      title: "Opening Ceremony",
-      date: "March 1, 2025",
+      title: "Announcement of Selected Participants",
+    desc: "ประกาศผลผู้ผ่านการคัดเลือก",
+      date: "2 พฤษภาคม 2568",
       left: false,
       icon: <Newspaper className="w-6 h-6 text-gray-300 mb-2 " />,
     },
     {
-      title: "Hacking Begins",
-      date: "March 2, 2025",
+      title: "Confirmation of Participation",
+      desc: "ยืนยันสิทธิ์",
+      date: "2 พฤษภาคม - 3 พฤษภาคม 2568",
       left: true,
+      icon: <Check  className="w-6 h-6 text-gray-300 mb-2 " />,
+    },
+    {
+      title: "Finalist Announcement",
+      desc: "ติดต่อตัวสำรอง เเละ ยืนยันสิทธิ์ตัวสำรอง",
+      date: "4 พฤษภาคม 2568",
+      left: false,
       icon: <Megaphone className="w-6 h-6 text-gray-300 mb-2 " />,
     },
     {
-      title: "Final Presentation",
-      date: "March 4, 2025",
-      left: false,
+      title: "Main Event",
+      desc: "เข้าร่วมกิจกรรม",
+      date: "8 พฤษภาคม - 9 พฤษภาคม 2568 (ไม่ค้างคืน)",
+      left: true,
       icon: <Flame className="w-6 h-6 text-gray-300 mb-2 " />,
     },
   ];
 
   return (
-    <div className=" w-screen mx-auto relative bg-gray-50">
+    <div id="timeline"className=" w-screen mx-auto relative bg-gray-50">
       <div className="flex justify-center items-center gap-4 mb-16">
         <Image
           src="/assert/time.svg"
@@ -147,7 +158,7 @@ const TimelineWithSpiral = () => {
           height={35}
           className="  "
         />
-        <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display italic">
+        <h2 className="text-3xl md:text-4xl  font-bold text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display italic">
           Event Timeline
         </h2>
       </div>
@@ -193,7 +204,7 @@ const TimelineWithSpiral = () => {
                     <h3 className="font-bold text-xl font-Playfair-Display italic">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600">Lorem ipsum dolor sit amet </p>
+                    <p className="text-gray-600">{item.desc}</p>
                     <p className="text-gray-600 ">{item.date}</p>
                   </div>
                 </div>
@@ -205,7 +216,7 @@ const TimelineWithSpiral = () => {
                     <h3 className="font-bold text-xl font-Playfair-Display italic">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600">Lorem ipsum dolor sit amet </p>
+                    <p className="text-gray-600">{item.desc}</p>
                     <p className="text-gray-600">{item.date}</p>
                   </div>
                 </div>

@@ -10,8 +10,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Account {
@@ -50,7 +51,10 @@ model User {
   accounts      Account[]
   sessions      Session[]
   form          Form?
+  validOnsite   UserState?
+  confirmation  Boolean?
 }
+
 
 model Form {
   id         String   @id @default(cuid())
@@ -70,6 +74,8 @@ model Form {
   checkbox   Boolean?
   userId     String   @unique
   user       User     @relation(fields: [userId], references: [id])
+  alreadySubmit Boolean?
+  submitDate   DateTime?
 }
 
 enum Prefix {
@@ -83,4 +89,11 @@ enum Grade {
   ม_5
   ม_6
   ปวช
+}
+
+enum UserState {
+  acceptList
+  waitingList
+  deniedList
+  Didntcheck
 }

@@ -1,6 +1,11 @@
 "use client";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon, ClipboardPen, FileUser, UserRoundPen } from "lucide-react";
+import {
+  Calendar as CalendarIcon,
+  ClipboardPen,
+  FileUser,
+  UserRoundPen,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -28,7 +33,8 @@ import {
 import { quizz } from "@/lib/data";
 import { useState, useEffect } from "react";
 import ImageUploader from "./imageUploader";
-import { Textarea } from "@/components/ui/textarea";
+import { Slide, ToastContainer, toast } from "react-toastify";
+import { CalendarRaw } from "./ui/calender-raw";
 
 type FormProps = {
   onLogout: () => void;
@@ -50,6 +56,9 @@ export default function Form({ onLogout }: FormProps) {
     new Array(quizz.length).fill("")
   );
   const [checkbox, setCheckbox] = useState<boolean>();
+  const [submitError, setSubmitError] = useState<string | null>("");
+  const [submit, setSubmit] = useState<boolean>(false);
+  const [sDate, setSDate] = useState<Date | null>();
 
   useEffect(() => {
     const loadData = async () => {
@@ -71,6 +80,8 @@ export default function Form({ onLogout }: FormProps) {
           setEtc(data.etc || "");
           setAns(data.ans || Array(6).fill("")); // กำหนด ans ให้มี 6 ช่องว่าง
           setCheckbox(data.checkbox || false);
+          setSubmit(data.alreadySumbit || false);
+          setSDate(data.submitDate || null);
         }
       } catch (err) {
         console.error("Failed to load data", err);
@@ -81,6 +92,8 @@ export default function Form({ onLogout }: FormProps) {
   }, []);
 
   const saveData = async () => {
+    const id = toast.info("Loading...")
+    try {
       await fetch("/api/form", {
         method: "POST",
         headers: {
@@ -103,7 +116,74 @@ export default function Form({ onLogout }: FormProps) {
           checkbox,
         }),
       });
+      toast.update(id,{
+        render: `Already Save`,
+        type: "success",
+        isLoading: false,
+      });
+    } catch(e){
+      toast.update(id,{
+        render: `Something Went wrong`,
+        type: "error",
+        isLoading: false,
+      });
+    }
   };
+
+  const submitData = async () => {
+    const id = toast.info("Loading..."); // Display loading toast
+    try {
+      const response = await fetch("/api/form/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          imageData,
+          prefix,
+          firstname,
+          surname,
+          nickname,
+          date,
+          email,
+          phone,
+          province,
+          grade,
+          school,
+          etc,
+          ans,
+          checkbox,
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        toast.update(id,{
+          render: `Submit Fail`,
+          type: "error",
+          isLoading: false,
+        });
+        // console.log(result.error)
+        setSubmitError(result.error);
+        return;
+      }
+      toast.update(id,{
+        render: `Already Submit`,
+        type: "success",
+        isLoading: false,
+      });
+      setSubmitError(null);
+      setSubmit(true);
+    } catch (e) {
+      toast.update(id,{
+        render: `Submit Fail`,
+        type: "error",
+        isLoading: false,
+      });
+      // console.log("", e);
+    }
+  };
+
   const onCheckboxChange = (e: boolean) => {
     setCheckbox(e);
   };
@@ -158,17 +238,33 @@ export default function Form({ onLogout }: FormProps) {
       return updatedAns;
     });
   };
+
   return (
     // form
     <div>
       <section
         id="form-art"
-        className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden font-IBM-Plex "
+        className={`py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden font-IBM-Plex ${
+          submit ? "pointer-events-none" : "pointer-events-auto"
+        }`}
       >
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Slide}
+        />
         <div className="container mx-auto px-6 relative ">
           <div className="flex justify-center items-center gap-4 mb-16">
             <UserRoundPen className="w-8 h-8 text-gray-300 my-2" />
-            <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display italic">
+            <h2 className="text-2xl md:text-4xl  font-bold text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display italic">
               Complete Your Profile
             </h2>
           </div>
@@ -177,13 +273,13 @@ export default function Form({ onLogout }: FormProps) {
             <div className="p-8 border-r border-gray-100">
               <div className="flex items-center gap-4 mb-8">
                 {/* <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white">
-                  1
-                </div> */}
+                 1
+               </div> */}
                 <div className="flex justify-start items-center gap-4 ">
-                  <FileUser   className="w-8 h-8 text-gray-300 my-2" />
+                  <FileUser className="w-8 h-8 text-gray-300 my-2" />
                   <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display ">
-                  Personal Information
-                </h3>
+                    Personal Information
+                  </h3>
                 </div>
               </div>
 
@@ -273,6 +369,7 @@ export default function Form({ onLogout }: FormProps) {
                   </div>
                   <div className="col-span-2 ">
                     <h2 className="block mb-2 font-medium">วันเกิด</h2>
+
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
@@ -282,17 +379,22 @@ export default function Form({ onLogout }: FormProps) {
                           {date ? format(date, "PPP") : <span>วันเกิด</span>}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 bg-white ">
-                        <Calendar
+                      <PopoverContent align="start" className="w-auto p-0 bg-white ">
+                        <CalendarRaw
                           mode="single"
                           selected={date}
                           onSelect={(e) => {
                             onDateChange(e);
                           }}
                           initialFocus
+                          fromYear={2000}
+                          toYear={2024}
+                          captionLayout="dropdown-buttons"
                         />
                       </PopoverContent>
                     </Popover>
+
+                    
                   </div>
                 </div>
 
@@ -357,19 +459,19 @@ export default function Form({ onLogout }: FormProps) {
                           value="ม_4"
                           className="focus:bg-gray-100 duration-200"
                         >
-                          มธัยมศึกษาปีที่ 4
+                          มัธยมศึกษาปีที่ 4
                         </SelectItem>
                         <SelectItem
                           value="ม_5"
                           className="focus:bg-gray-100 duration-200"
                         >
-                          มธัยมศึกษาปีที่ 5
+                          มัธยมศึกษาปีที่ 5
                         </SelectItem>
                         <SelectItem
                           value="ม_6"
                           className="focus:bg-gray-100 duration-200"
                         >
-                          มธัยมศึกษาปีที่ 6
+                          มัธยมศึกษาปีที่ 6
                         </SelectItem>
                         <SelectItem
                           value="ปวช."
@@ -409,7 +511,7 @@ export default function Form({ onLogout }: FormProps) {
                   ></textarea>
                 </div>
                 <Button
-                  className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600 rounded-lg cursor-pointer hover:scale-105"
+                  className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600 rounded-lg cursor-pointer hover:scale-105 pointer-events-auto"
                   onClick={onLogout}
                 >
                   ออกจากระบบ
@@ -421,60 +523,72 @@ export default function Form({ onLogout }: FormProps) {
             <div className="p-8 bg-gradient-to-br from-gray-50 to-white">
               <div className="flex items-center gap-4 mb-8">
                 {/* <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white">
-                  2
-                </div> */}
+                 2
+               </div> */}
                 <div className="flex justify-start items-center gap-4 ">
-                  <ClipboardPen   className="w-8 h-8 text-gray-300 my-2" />
+                  <ClipboardPen className="w-8 h-8 text-gray-300 my-2" />
                   <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-Playfair-Display ">
-                  Questions
-                </h3>
+                    Questions
+                  </h3>
                 </div>
-          
               </div>
 
               {/* <!-- Questions Content --> */}
               <div className="space-y-6 px-6">
                 <Carousel className="w-full">
                   <div className="flex justify-start gap-4 py-2 opacity-50">
-                    <CarouselPrevious className="static text-gray-600 hover:bg-transparent" />
-                    <CarouselNext className="static text-gray-600 hover:bg-transparent" />
+                    <CarouselPrevious className="static text-gray-600 hover:bg-transparent pointer-events-auto" />
+                    <CarouselNext className="static text-gray-600 hover:bg-transparent pointer-events-auto" />
                   </div>
                   <div className="pointer-events-none w-full">
                     <CarouselContent className="w-full">
-                      {Array.from({ length: Math.ceil(quizz.length / 3) }).map(
-                        (_, i) => (
-                          <CarouselItem key={i}>
-                            <div className="h-full">
-                              <div className="border-0 shadow-none h-full">
-                                <CardContent className="flex flex-col gap-5 p-0 h-full">
-                                  {Array.from({ length: 3 }).map(
-                                    (_, j) =>
-                                      3 * i + j < quizz.length && (
-                                        <div key={j} className={`space-y-6 ${3 * i + j == quizz.length-1 && "h-full" }`}>
-                                          <h1 className="block mb-2 font-medium ">
-                                            {quizz[3 * i + j]}
-                                          </h1>
+                      {Array.from({
+                        length: Math.ceil(quizz.length / 3),
+                      }).map((_, i) => (
+                        <CarouselItem key={i}>
+                          <div className="h-full">
+                            <div className="border-0 shadow-none h-full">
+                              <CardContent className="flex flex-col gap-5 p-0 h-full">
+                                {Array.from({ length: 3 }).map(
+                                  (_, j) =>
+                                    3 * i + j < quizz.length && (
+                                      <div
+                                        key={j}
+                                        className={`space-y-6 ${
+                                          3 * i + j == quizz.length - 1 &&
+                                          "h-full"
+                                        }`}
+                                      >
+                                        <h1 className="block mb-2 font-medium ">
+                                          {quizz[3 * i + j]}
+                                        </h1>
 
-                                          <textarea
-                                            className={`pointer-events-auto w-full px-4 py-3 rounded-xl border border-gray-200 focus-visible:ring-0 focus:outline-0 text-gray-600 ${3 * i + j == quizz.length-1 && "h-[75%]" }`} 
-                                            defaultValue={ans[3 * i + j]}
-                                            rows={4}
-                                            onChange={(e) => {
-                                              onAnsChange(
-                                                3 * i + j,
-                                                e.target.value
-                                              );
-                                            }}
-                                          ></textarea>
-                                        </div>
-                                      )
-                                  )}
-                                </CardContent>
-                              </div>
+                                        <textarea
+                                          className={`pointer-events-auto w-full px-4 py-3 rounded-xl border border-gray-200 focus-visible:ring-0 focus:outline-0 text-gray-600 ${
+                                            3 * i + j == quizz.length - 1 &&
+                                            "h-[75%]"
+                                          } ${
+                                            submit
+                                              ? "pointer-events-none"
+                                              : "pointer-events-auto"
+                                          }`}
+                                          defaultValue={ans[3 * i + j]}
+                                          rows={4}
+                                          onChange={(e) => {
+                                            onAnsChange(
+                                              3 * i + j,
+                                              e.target.value
+                                            );
+                                          }}
+                                        ></textarea>
+                                      </div>
+                                    )
+                                )}
+                              </CardContent>
                             </div>
-                          </CarouselItem>
-                        )
-                      )}
+                          </div>
+                        </CarouselItem>
+                      ))}
                     </CarouselContent>
                   </div>
                 </Carousel>
@@ -491,16 +605,39 @@ export default function Form({ onLogout }: FormProps) {
                     htmlFor="terms"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-IBM-Plex text-gray-600 ml-3"
                   >
-                    ยอมรับใน ข้อกำหนดและเงื่อนไขการเข้าร่วมโครงการ และ
-                    นโยบายข้อมูลส่วนบุคคล
+                    ยอมรับใน PDPA
                   </label>
                 </div>
-                <Button
-                  onClick={saveData}
-                  className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600  rounded-lg cursor-pointer hover:scale-105"
-                >
-                  บันทึกข้อมูล
-                </Button>
+                {!submit ? (
+                  <p>*สามารถบันทึกข้อมูลเเละกลับมาเเก้ไขได้</p>
+                ) : (
+                  <>
+                  </>
+                )}
+
+                {submitError != null ? (
+                  <p className="text-red-500">{submitError}</p>
+                ) : (
+                  <p></p>
+                )}
+                {!submit ? (
+                  <div className="flex justify-between">
+                    <Button
+                      onClick={saveData}
+                      className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600  rounded-lg cursor-pointer hover:scale-105"
+                    >
+                      บันทึกข้อมูล
+                    </Button>
+                    <Button
+                      onClick={submitData}
+                      className="border-[1px] hover:bg-gray-100 border-gray-300 text-gray-600  rounded-lg cursor-pointer hover:scale-105"
+                    >
+                      ส่งข้อมูล
+                    </Button>
+                  </div>
+                ) : (
+                  <p>เราได้รับคำตอบของคุณเเล้ว</p>
+                )}
               </div>
             </div>
           </div>

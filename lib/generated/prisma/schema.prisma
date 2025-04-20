@@ -10,8 +10,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Account {
@@ -42,11 +43,55 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  form          Form?
+  validOnsite   UserState?
+}
+
+model Form {
+  id            String    @id @default(cuid())
+  imageData     String?
+  prefix        Prefix?
+  firstname     String?
+  surname       String?
+  nickname      String?
+  date          DateTime?
+  email         String?
+  phone         String?
+  province      String?
+  grade         Grade?
+  school        String?
+  etc           String?
+  ans           String[]
+  checkbox      Boolean?
+  userId        String    @unique
+  user          User      @relation(fields: [userId], references: [id])
+  alreadySumbit Boolean?
+  submitDate    DateTime?
+}
+
+enum Prefix {
+  นาย
+  นาง
+  นางสาว
+}
+
+enum Grade {
+  ม_4
+  ม_5
+  ม_6
+  ปวช
+}
+
+enum UserState {
+  acceptList
+  waitingList
+  deniedList
+  Didntcheck
 }

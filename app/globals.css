@@ -9,3 +9,7 @@
 .custom-cursor {
     cursor: url('/assert/cursor.svg'), auto; /* adjust path and fallback */
   }
+
+.rdp-vhidden{
+    @apply hidden;
+}

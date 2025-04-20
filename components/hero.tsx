@@ -158,29 +158,26 @@ export default function Hero() {
       <div className="container h-full mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2">
 
         <div
-          className="text-left max-w-2xl h-full flex flex-col justify-center top-1/2 translate-y-1/2 md:translate-y-0 md:top-0 z-50"
+          className="text-left max-w-2xl h-full flex flex-col justify-center top-1/2 translate-y-1/4 md:translate-y-0 md:top-0 z-50"
           ref={canvasboxRef}
         >
-            {/* <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                            HACK/2025
-                        </span> */}
             <Image
               src="/assert/hero logo.svg"
               alt="Hackathon Banner"
-              width={350}
+              width={375}
               height={200}
-              className=""
+              className=" pb-3"
             />
           <p className="text-2xl text-gray-600 mb-8">
-            Join the biggest hackathon of 2025. Code, Create, Innovate.
+            Join hackathon of 2025. Code, Create, Innovate.
           </p>
           <div className="flex gap-4">
-            <button className="px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transform hover:scale-105 transition">
+            <a className="text-sm md:text-base px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transform hover:scale-105 transition"  href="#register">
               Register Now
-            </button>
-            <button className="px-8 py-3 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-100 transform hover:scale-105 transition bg-gray-50">
+            </a>
+            <a className="text-sm md:text-base px-8 py-3 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-100 transform hover:scale-105 transition bg-gray-50"  href="#about">
               Learn More
-            </button>
+            </a>
           </div>
         </div>
         <div className="w-full h-full relative">

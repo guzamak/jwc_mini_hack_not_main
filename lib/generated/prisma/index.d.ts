@@ -56,6 +56,16 @@ export const Grade: {
 
 export type Grade = (typeof Grade)[keyof typeof Grade]
 
+
+export const UserState: {
+  acceptList: 'acceptList',
+  waitingList: 'waitingList',
+  deniedList: 'deniedList',
+  Didntcheck: 'Didntcheck'
+};
+
+export type UserState = (typeof UserState)[keyof typeof UserState]
+
 }
 
 export type Prefix = $Enums.Prefix
@@ -65,6 +75,10 @@ export const Prefix: typeof $Enums.Prefix
 export type Grade = $Enums.Grade
 
 export const Grade: typeof $Enums.Grade
+
+export type UserState = $Enums.UserState
+
+export const UserState: typeof $Enums.UserState
 
 /**
  * ##  Prisma Client ʲˢ
@@ -3457,6 +3471,8 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     image: string | null
+    validOnsite: $Enums.UserState | null
+    confirmation: boolean | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -3465,6 +3481,8 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     image: string | null
+    validOnsite: $Enums.UserState | null
+    confirmation: boolean | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -3473,6 +3491,8 @@ export namespace Prisma {
     email: number
     emailVerified: number
     image: number
+    validOnsite: number
+    confirmation: number
     _all: number
   }
 
@@ -3483,6 +3503,8 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    validOnsite?: true
+    confirmation?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -3491,6 +3513,8 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    validOnsite?: true
+    confirmation?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -3499,6 +3523,8 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    validOnsite?: true
+    confirmation?: true
     _all?: true
   }
 
@@ -3580,6 +3606,8 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     image: string | null
+    validOnsite: $Enums.UserState | null
+    confirmation: boolean | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -3605,6 +3633,8 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    validOnsite?: boolean
+    confirmation?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     form?: boolean | User$formArgs<ExtArgs>
@@ -3617,6 +3647,8 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    validOnsite?: boolean
+    confirmation?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3625,6 +3657,8 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    validOnsite?: boolean
+    confirmation?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -3633,9 +3667,11 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    validOnsite?: boolean
+    confirmation?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "validOnsite" | "confirmation", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -3658,6 +3694,8 @@ export namespace Prisma {
       email: string | null
       emailVerified: Date | null
       image: string | null
+      validOnsite: $Enums.UserState | null
+      confirmation: boolean | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -4051,6 +4089,7 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    validStates: string;
     readonly [Symbol.toStringTag]: "PrismaPromise"
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4089,6 +4128,8 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'DateTime'>
     readonly image: FieldRef<"User", 'String'>
+    readonly validOnsite: FieldRef<"User", 'UserState'>
+    readonly confirmation: FieldRef<"User", 'Boolean'>
   }
     
 
@@ -4588,6 +4629,8 @@ export namespace Prisma {
     etc: string | null
     checkbox: boolean | null
     userId: string | null
+    alreadySubmit: boolean | null
+    submitDate: Date | null
   }
 
   export type FormMaxAggregateOutputType = {
@@ -4606,6 +4649,8 @@ export namespace Prisma {
     etc: string | null
     checkbox: boolean | null
     userId: string | null
+    alreadySubmit: boolean | null
+    submitDate: Date | null
   }
 
   export type FormCountAggregateOutputType = {
@@ -4625,6 +4670,8 @@ export namespace Prisma {
     ans: number
     checkbox: number
     userId: number
+    alreadySubmit: number
+    submitDate: number
     _all: number
   }
 
@@ -4645,6 +4692,8 @@ export namespace Prisma {
     etc?: true
     checkbox?: true
     userId?: true
+    alreadySubmit?: true
+    submitDate?: true
   }
 
   export type FormMaxAggregateInputType = {
@@ -4663,6 +4712,8 @@ export namespace Prisma {
     etc?: true
     checkbox?: true
     userId?: true
+    alreadySubmit?: true
+    submitDate?: true
   }
 
   export type FormCountAggregateInputType = {
@@ -4682,6 +4733,8 @@ export namespace Prisma {
     ans?: true
     checkbox?: true
     userId?: true
+    alreadySubmit?: true
+    submitDate?: true
     _all?: true
   }
 
@@ -4774,6 +4827,8 @@ export namespace Prisma {
     ans: string[]
     checkbox: boolean | null
     userId: string
+    alreadySubmit: boolean | null
+    submitDate: Date | null
     _count: FormCountAggregateOutputType | null
     _min: FormMinAggregateOutputType | null
     _max: FormMaxAggregateOutputType | null
@@ -4810,6 +4865,8 @@ export namespace Prisma {
     ans?: boolean
     checkbox?: boolean
     userId?: boolean
+    alreadySubmit?: boolean
+    submitDate?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["form"]>
 
@@ -4830,6 +4887,8 @@ export namespace Prisma {
     ans?: boolean
     checkbox?: boolean
     userId?: boolean
+    alreadySubmit?: boolean
+    submitDate?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["form"]>
 
@@ -4850,6 +4909,8 @@ export namespace Prisma {
     ans?: boolean
     checkbox?: boolean
     userId?: boolean
+    alreadySubmit?: boolean
+    submitDate?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["form"]>
 
@@ -4870,9 +4931,11 @@ export namespace Prisma {
     ans?: boolean
     checkbox?: boolean
     userId?: boolean
+    alreadySubmit?: boolean
+    submitDate?: boolean
   }
 
-  export type FormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageData" | "prefix" | "firstname" | "surname" | "nickname" | "date" | "email" | "phone" | "province" | "grade" | "school" | "etc" | "ans" | "checkbox" | "userId", ExtArgs["result"]["form"]>
+  export type FormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageData" | "prefix" | "firstname" | "surname" | "nickname" | "date" | "email" | "phone" | "province" | "grade" | "school" | "etc" | "ans" | "checkbox" | "userId" | "alreadySubmit" | "submitDate", ExtArgs["result"]["form"]>
   export type FormInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -4905,6 +4968,8 @@ export namespace Prisma {
       ans: string[]
       checkbox: boolean | null
       userId: string
+      alreadySubmit: boolean | null
+      submitDate: Date | null
     }, ExtArgs["result"]["form"]>
     composites: {}
   }
@@ -5345,6 +5410,8 @@ export namespace Prisma {
     readonly ans: FieldRef<"Form", 'String[]'>
     readonly checkbox: FieldRef<"Form", 'Boolean'>
     readonly userId: FieldRef<"Form", 'String'>
+    readonly alreadySubmit: FieldRef<"Form", 'Boolean'>
+    readonly submitDate: FieldRef<"Form", 'DateTime'>
   }
     
 
@@ -5806,7 +5873,9 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     emailVerified: 'emailVerified',
-    image: 'image'
+    image: 'image',
+    validOnsite: 'validOnsite',
+    confirmation: 'confirmation'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -5828,7 +5897,9 @@ export namespace Prisma {
     etc: 'etc',
     ans: 'ans',
     checkbox: 'checkbox',
-    userId: 'userId'
+    userId: 'userId',
+    alreadySubmit: 'alreadySubmit',
+    submitDate: 'submitDate'
   };
 
   export type FormScalarFieldEnum = (typeof FormScalarFieldEnum)[keyof typeof FormScalarFieldEnum]
@@ -5906,6 +5977,27 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'UserState'
+   */
+  export type EnumUserStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserState'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserState[]'
+   */
+  export type ListEnumUserStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserState[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Prefix'
    */
   export type EnumPrefixFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Prefix'>
@@ -5930,13 +6022,6 @@ export namespace Prisma {
    * Reference to a field of type 'Grade[]'
    */
   export type ListEnumGradeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Grade[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -6109,6 +6194,8 @@ export namespace Prisma {
     email?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
+    validOnsite?: EnumUserStateNullableFilter<"User"> | $Enums.UserState | null
+    confirmation?: BoolNullableFilter<"User"> | boolean | null
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     form?: XOR<FormNullableScalarRelationFilter, FormWhereInput> | null
@@ -6120,6 +6207,8 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    validOnsite?: SortOrderInput | SortOrder
+    confirmation?: SortOrderInput | SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     form?: FormOrderByWithRelationInput
@@ -6134,6 +6223,8 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
+    validOnsite?: EnumUserStateNullableFilter<"User"> | $Enums.UserState | null
+    confirmation?: BoolNullableFilter<"User"> | boolean | null
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     form?: XOR<FormNullableScalarRelationFilter, FormWhereInput> | null
@@ -6145,6 +6236,8 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    validOnsite?: SortOrderInput | SortOrder
+    confirmation?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -6159,6 +6252,8 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"User"> | string | null
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
+    validOnsite?: EnumUserStateNullableWithAggregatesFilter<"User"> | $Enums.UserState | null
+    confirmation?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
   }
 
   export type FormWhereInput = {
@@ -6181,6 +6276,8 @@ export namespace Prisma {
     ans?: StringNullableListFilter<"Form">
     checkbox?: BoolNullableFilter<"Form"> | boolean | null
     userId?: StringFilter<"Form"> | string
+    alreadySubmit?: BoolNullableFilter<"Form"> | boolean | null
+    submitDate?: DateTimeNullableFilter<"Form"> | Date | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -6201,6 +6298,8 @@ export namespace Prisma {
     ans?: SortOrder
     checkbox?: SortOrderInput | SortOrder
     userId?: SortOrder
+    alreadySubmit?: SortOrderInput | SortOrder
+    submitDate?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -6224,6 +6323,8 @@ export namespace Prisma {
     etc?: StringNullableFilter<"Form"> | string | null
     ans?: StringNullableListFilter<"Form">
     checkbox?: BoolNullableFilter<"Form"> | boolean | null
+    alreadySubmit?: BoolNullableFilter<"Form"> | boolean | null
+    submitDate?: DateTimeNullableFilter<"Form"> | Date | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
@@ -6244,6 +6345,8 @@ export namespace Prisma {
     ans?: SortOrder
     checkbox?: SortOrderInput | SortOrder
     userId?: SortOrder
+    alreadySubmit?: SortOrderInput | SortOrder
+    submitDate?: SortOrderInput | SortOrder
     _count?: FormCountOrderByAggregateInput
     _max?: FormMaxOrderByAggregateInput
     _min?: FormMinOrderByAggregateInput
@@ -6269,6 +6372,8 @@ export namespace Prisma {
     ans?: StringNullableListFilter<"Form">
     checkbox?: BoolNullableWithAggregatesFilter<"Form"> | boolean | null
     userId?: StringWithAggregatesFilter<"Form"> | string
+    alreadySubmit?: BoolNullableWithAggregatesFilter<"Form"> | boolean | null
+    submitDate?: DateTimeNullableWithAggregatesFilter<"Form"> | Date | string | null
   }
 
   export type AccountCreateInput = {
@@ -6429,6 +6534,8 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     form?: FormCreateNestedOneWithoutUserInput
@@ -6440,6 +6547,8 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     form?: FormUncheckedCreateNestedOneWithoutUserInput
@@ -6451,6 +6560,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     form?: FormUpdateOneWithoutUserNestedInput
@@ -6462,6 +6573,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     form?: FormUncheckedUpdateOneWithoutUserNestedInput
@@ -6473,6 +6586,8 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -6481,6 +6596,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -6489,6 +6606,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type FormCreateInput = {
@@ -6507,6 +6626,8 @@ export namespace Prisma {
     etc?: string | null
     ans?: FormCreateansInput | string[]
     checkbox?: boolean | null
+    alreadySubmit?: boolean | null
+    submitDate?: Date | string | null
     user: UserCreateNestedOneWithoutFormInput
   }
 
@@ -6527,6 +6648,8 @@ export namespace Prisma {
     ans?: FormCreateansInput | string[]
     checkbox?: boolean | null
     userId: string
+    alreadySubmit?: boolean | null
+    submitDate?: Date | string | null
   }
 
   export type FormUpdateInput = {
@@ -6545,6 +6668,8 @@ export namespace Prisma {
     etc?: NullableStringFieldUpdateOperationsInput | string | null
     ans?: FormUpdateansInput | string[]
     checkbox?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    alreadySubmit?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    submitDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UserUpdateOneRequiredWithoutFormNestedInput
   }
 
@@ -6565,6 +6690,8 @@ export namespace Prisma {
     ans?: FormUpdateansInput | string[]
     checkbox?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: StringFieldUpdateOperationsInput | string
+    alreadySubmit?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    submitDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type FormCreateManyInput = {
@@ -6584,6 +6711,8 @@ export namespace Prisma {
     ans?: FormCreateansInput | string[]
     checkbox?: boolean | null
     userId: string
+    alreadySubmit?: boolean | null
+    submitDate?: Date | string | null
   }
 
   export type FormUpdateManyMutationInput = {
@@ -6602,6 +6731,8 @@ export namespace Prisma {
     etc?: NullableStringFieldUpdateOperationsInput | string | null
     ans?: FormUpdateansInput | string[]
     checkbox?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    alreadySubmit?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    submitDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type FormUncheckedUpdateManyInput = {
@@ -6621,6 +6752,8 @@ export namespace Prisma {
     ans?: FormUpdateansInput | string[]
     checkbox?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: StringFieldUpdateOperationsInput | string
+    alreadySubmit?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    submitDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6841,6 +6974,18 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type EnumUserStateNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserState | EnumUserStateFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserState[] | ListEnumUserStateFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserState[] | ListEnumUserStateFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStateNullableFilter<$PrismaModel> | $Enums.UserState | null
+  }
+
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -6872,6 +7017,8 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    validOnsite?: SortOrder
+    confirmation?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -6880,6 +7027,8 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    validOnsite?: SortOrder
+    confirmation?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -6888,6 +7037,8 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    validOnsite?: SortOrder
+    confirmation?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6902,6 +7053,24 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type EnumUserStateNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserState | EnumUserStateFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserState[] | ListEnumUserStateFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserState[] | ListEnumUserStateFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStateNullableWithAggregatesFilter<$PrismaModel> | $Enums.UserState | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumUserStateNullableFilter<$PrismaModel>
+    _max?: NestedEnumUserStateNullableFilter<$PrismaModel>
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type EnumPrefixNullableFilter<$PrismaModel = never> = {
@@ -6926,11 +7095,6 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type BoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
   export type FormCountOrderByAggregateInput = {
     id?: SortOrder
     imageData?: SortOrder
@@ -6948,6 +7112,8 @@ export namespace Prisma {
     ans?: SortOrder
     checkbox?: SortOrder
     userId?: SortOrder
+    alreadySubmit?: SortOrder
+    submitDate?: SortOrder
   }
 
   export type FormMaxOrderByAggregateInput = {
@@ -6966,6 +7132,8 @@ export namespace Prisma {
     etc?: SortOrder
     checkbox?: SortOrder
     userId?: SortOrder
+    alreadySubmit?: SortOrder
+    submitDate?: SortOrder
   }
 
   export type FormMinOrderByAggregateInput = {
@@ -6984,6 +7152,8 @@ export namespace Prisma {
     etc?: SortOrder
     checkbox?: SortOrder
     userId?: SortOrder
+    alreadySubmit?: SortOrder
+    submitDate?: SortOrder
   }
 
   export type EnumPrefixNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7004,14 +7174,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedEnumGradeNullableFilter<$PrismaModel>
     _max?: NestedEnumGradeNullableFilter<$PrismaModel>
-  }
-
-  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -7104,6 +7266,14 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type NullableEnumUserStateFieldUpdateOperationsInput = {
+    set?: $Enums.UserState | null
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -7203,10 +7373,6 @@ export namespace Prisma {
   export type FormUpdateansInput = {
     set?: string[]
     push?: string | string[]
-  }
-
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
   }
 
   export type UserUpdateOneRequiredWithoutFormNestedInput = {
@@ -7364,6 +7530,18 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedEnumUserStateNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserState | EnumUserStateFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserState[] | ListEnumUserStateFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserState[] | ListEnumUserStateFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStateNullableFilter<$PrismaModel> | $Enums.UserState | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -7378,6 +7556,24 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumUserStateNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserState | EnumUserStateFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserState[] | ListEnumUserStateFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserState[] | ListEnumUserStateFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStateNullableWithAggregatesFilter<$PrismaModel> | $Enums.UserState | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumUserStateNullableFilter<$PrismaModel>
+    _max?: NestedEnumUserStateNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumPrefixNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.Prefix | EnumPrefixFieldRefInput<$PrismaModel> | null
     in?: $Enums.Prefix[] | ListEnumPrefixFieldRefInput<$PrismaModel> | null
@@ -7390,11 +7586,6 @@ export namespace Prisma {
     in?: $Enums.Grade[] | ListEnumGradeFieldRefInput<$PrismaModel> | null
     notIn?: $Enums.Grade[] | ListEnumGradeFieldRefInput<$PrismaModel> | null
     not?: NestedEnumGradeNullableFilter<$PrismaModel> | $Enums.Grade | null
-  }
-
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type NestedEnumPrefixNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7417,20 +7608,14 @@ export namespace Prisma {
     _max?: NestedEnumGradeNullableFilter<$PrismaModel>
   }
 
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
-
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
     sessions?: SessionCreateNestedManyWithoutUserInput
     form?: FormCreateNestedOneWithoutUserInput
   }
@@ -7441,6 +7626,8 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     form?: FormUncheckedCreateNestedOneWithoutUserInput
   }
@@ -7467,6 +7654,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
     sessions?: SessionUpdateManyWithoutUserNestedInput
     form?: FormUpdateOneWithoutUserNestedInput
   }
@@ -7477,6 +7666,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     form?: FormUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -7487,6 +7678,8 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     form?: FormCreateNestedOneWithoutUserInput
   }
@@ -7497,6 +7690,8 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     form?: FormUncheckedCreateNestedOneWithoutUserInput
   }
@@ -7523,6 +7718,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     form?: FormUpdateOneWithoutUserNestedInput
   }
@@ -7533,6 +7730,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     form?: FormUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -7613,6 +7812,8 @@ export namespace Prisma {
     etc?: string | null
     ans?: FormCreateansInput | string[]
     checkbox?: boolean | null
+    alreadySubmit?: boolean | null
+    submitDate?: Date | string | null
   }
 
   export type FormUncheckedCreateWithoutUserInput = {
@@ -7631,6 +7832,8 @@ export namespace Prisma {
     etc?: string | null
     ans?: FormCreateansInput | string[]
     checkbox?: boolean | null
+    alreadySubmit?: boolean | null
+    submitDate?: Date | string | null
   }
 
   export type FormCreateOrConnectWithoutUserInput = {
@@ -7725,6 +7928,8 @@ export namespace Prisma {
     etc?: NullableStringFieldUpdateOperationsInput | string | null
     ans?: FormUpdateansInput | string[]
     checkbox?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    alreadySubmit?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    submitDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type FormUncheckedUpdateWithoutUserInput = {
@@ -7743,6 +7948,8 @@ export namespace Prisma {
     etc?: NullableStringFieldUpdateOperationsInput | string | null
     ans?: FormUpdateansInput | string[]
     checkbox?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    alreadySubmit?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    submitDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserCreateWithoutFormInput = {
@@ -7751,6 +7958,8 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
@@ -7761,6 +7970,8 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    validOnsite?: $Enums.UserState | null
+    confirmation?: boolean | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -7787,6 +7998,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
@@ -7797,6 +8010,8 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    validOnsite?: NullableEnumUserStateFieldUpdateOperationsInput | $Enums.UserState | null
+    confirmation?: NullableBoolFieldUpdateOperationsInput | boolean | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
