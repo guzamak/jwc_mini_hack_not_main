@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
-export async function GET(req: NextRequest, { params }: { params: { secretkey: string } }) {
-  const { secretkey } = params;
+export async function GET(req: NextRequest, { params }: { params: Promise<{ secretkey: string }> }) {
+  const { secretkey } = await params;
   // console.log(params.secretkey)
   // secetkey = param 
   if (secretkey !== process.env.SECRETKEY) {
