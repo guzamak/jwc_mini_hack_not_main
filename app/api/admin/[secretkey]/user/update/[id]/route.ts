@@ -1,15 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
-type Params = {
-  params: {
-    secretkey: string
-    id: string
-  }
-}
 
-export async function PUT(req: NextRequest, { params }: Params) {
-  const { secretkey, id } = params
+
+export async function PUT(req: NextRequest,  context: { params: { secretkey: string, id: string } }) {
+  const { secretkey, id } = context.params;
 
   if (secretkey !== process.env.SECRETKEY) {
     return NextResponse.json({ error: 'secretkey not correct' }, { status: 401 })
