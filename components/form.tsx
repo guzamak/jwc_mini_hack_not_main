@@ -188,7 +188,7 @@ export default function Form({ onLogout }: FormProps) {
     setCheckbox(e);
   };
 
-  const onPrefixChange = (e: "นาย" | "นาง" | "นางสาว") => {
+  const onPrefixChange = (e: string) => {
     setPrefix(e);
   };
 
@@ -204,7 +204,7 @@ export default function Form({ onLogout }: FormProps) {
     setNickname(e);
   };
 
-  const onDateChange = (e: Date) => {
+  const onDateChange = (e: Date | null) => {
     setDate(e);
   };
 
@@ -220,7 +220,7 @@ export default function Form({ onLogout }: FormProps) {
     setProvince(e);
   };
 
-  const onGradeChange = (e: "ม_4" | "ม_5" | "ม_6" | "ปวช") => {
+  const onGradeChange = (e: string) => {
     setGrade(e);
   };
 
