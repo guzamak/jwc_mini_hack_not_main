@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
-export async function GET(req: NextRequest, { params }: { params: Promise<{ secretkey: string }> }) {
-  const { secretkey } = await params;
-  // console.log(params.secretkey)
+type Params = {
+  params: {
+    secretkey: string
+  }
+}
+
+export async function GET(_: NextRequest, { params }: Params) {
+  const secretkey = params.secretkey
+  console.log(params.secretkey)
   // secetkey = param 
   if (secretkey !== process.env.SECRETKEY) {
     return NextResponse.json({ error: 'secretkey not correct' }, { status: 401 })
@@ -26,8 +32,8 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ secr
   }
 }
   
-export async function PUT(req: NextRequest, context: { params: { secretkey: string } }) {
-  const { secretkey } = context.params;
+export async function PUT(req: NextRequest, { params }: Params) {
+  const secretkey = params.secretkey
 
   if (secretkey !== process.env.SECRETKEY) {
     return NextResponse.json({ error: 'secretkey not correct' }, { status: 401 })
