@@ -78,9 +78,9 @@ export default function Form({ onLogout }: FormProps) {
           setGrade(data.grade || undefined);
           setSchool(data.school || "");
           setEtc(data.etc || "");
-          setAns(data.ans || Array(6).fill("")); // กำหนด ans ให้มี 6 ช่องว่าง
+          setAns(data.ans || Array(5).fill("")); 
           setCheckbox(data.checkbox || false);
-          setSubmit(data.alreadySumbit || false);
+          setSubmit(data.alreadySubmit || false);
           setSDate(data.submitDate || null);
         }
       } catch (err) {
@@ -605,7 +605,7 @@ export default function Form({ onLogout }: FormProps) {
                     htmlFor="terms"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-IBM-Plex text-gray-600 ml-3"
                   >
-                    ยอมรับใน PDPA
+                    ยอมรับให้ถ่ายภาพขณะทำกิจกรรม (PDPA)
                   </label>
                 </div>
                 {!submit ? (

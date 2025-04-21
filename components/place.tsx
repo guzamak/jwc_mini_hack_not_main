@@ -28,9 +28,8 @@ export default function Place() {
                                                           height={150}
                                                           className="z-10 absolute -bottom-1/12 -right-5 rotate-[15deg] scale-75 md:scale-100"
                                                         />
-              
               <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1937.7706286047576!2d100.53803643876493!3d13.746200902047873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ecfddb495b9%3A0x6e2c4a0e013c53!2zOTk5Lzkg4LiWLiDguJ7guKPguLDguKPguLLguKHguJfguLXguYggMSDguYHguILguKfguIfguJvguJfguLjguKHguKfguLHguJkg4LmA4LiC4LiV4Lib4LiX4Li44Lih4Lin4Lix4LiZIOC4geC4o-C4uOC4h-C5gOC4l-C4nuC4oeC4q-C4suC4meC4hOC4oyAxMDMzMA!5e0!3m2!1sth!2sth!4v1745135463028!5m2!1sth!2sth"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.545498213283!2d100.53576057586501!3d13.745944597427492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f948d90fb39%3A0x9066d5f51fc5f661!2z4LmA4LiL4LmH4LiZ4LiX4Lij4Lix4Lil4LmA4Lin4Li04Lil4LiU4LmMIOC4reC4reC4n-C4n-C4tOC4qOC5gOC4qOC4qg!5e0!3m2!1sth!2sth!4v1745232913193!5m2!1sth!2sth"
                   width="100%" 
                   height="100%" 
                   loading="lazy" 

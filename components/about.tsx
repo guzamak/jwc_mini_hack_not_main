@@ -22,8 +22,9 @@ export default function About() {
           </h2>
         </div>
         <div className="w-full h-fit p-5 text-center mb-3.5">
-          <p>
-            <p className="font-bold mb-3">Mini Hack by JWC13</p> เป็นกิจกรรม Hackathon จัดขึ้นโดยพี่ ๆ จากค่าย JWC
+          <div>
+            <p className="font-bold mb-3">Mini Hack by JWC13</p> 
+            <p>เป็นกิจกรรม Hackathon จัดขึ้นโดยพี่ ๆ จากค่าย JWC
             (Junior Webmater Camp) โดยจะส่งต่อประสบการณ์สุดพิเศษผ่านรูปแบบ
             Hackathon ไป-กลับ 2 วันเต็ม สำหรับน้อง ๆ ม.ปลาย
             ที่สนใจเทคโนโลยีและอยากเติบโตในวงการ Webmater
@@ -34,8 +35,8 @@ export default function About() {
             สร้างประสบการณ์เว็บทั้งระบบในหน้าเดียว" เปิดโอกาสให้น้อง ๆ
             แสดงไอเดียความคิดสร้างสรรค์อย่างเต็มที่ในระยะเวลา 2 วัน "ที่นี่...
             เราจะพิสูจน์ให้เห็นว่า
-            การเรียนรู้เทคโนโลยีสามารถสนุกและสร้างสรรค์ได้ทุกคน!"
-          </p>
+            การเรียนรู้เทคโนโลยีสามารถสนุกและสร้างสรรค์ได้ทุกคน!"</p>
+          </div>
         </div>
         <div className="grid md:grid-cols-3 gap-10">
           <div className="p-8 border-2 border-gray-200 rounded-3xl hover:bg-gray-100 hover:scale-105  duration-200">

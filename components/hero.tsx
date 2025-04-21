@@ -172,10 +172,10 @@ export default function Hero() {
             Join hackathon of 2025. Code, Create, Innovate.
           </p>
           <div className="flex gap-4">
-            <a className="text-sm md:text-base px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transform hover:scale-105 transition"  href="#register">
+            <a className=" text-center text-sm md:text-base px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transform hover:scale-105 transition"  href="#register">
               Register Now
             </a>
-            <a className="text-sm md:text-base px-8 py-3 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-100 transform hover:scale-105 transition bg-gray-50"  href="#about">
+            <a className="text-center text-sm md:text-base px-8 py-3 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-100 transform hover:scale-105 transition bg-gray-50"  href="#about">
               Learn More
             </a>
           </div>
