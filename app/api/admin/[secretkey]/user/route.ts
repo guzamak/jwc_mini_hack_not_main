@@ -26,8 +26,8 @@ export async function GET(_: NextRequest, context: { params: { secretkey: string
   }
 }
   
-export async function PUT(req: NextRequest, { params }: Params) {
-  const secretkey = params.secretkey
+export async function PUT(req: NextRequest, context: { params: { secretkey: string } }) {
+  const { secretkey } = context.params;
 
   if (secretkey !== process.env.SECRETKEY) {
     return NextResponse.json({ error: 'secretkey not correct' }, { status: 401 })
