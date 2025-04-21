@@ -5,6 +5,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ secr
   const { secretkey } = await params;
   // console.log(params.secretkey)
   // secetkey = param 
+  
   if (secretkey !== process.env.SECRETKEY) {
     return NextResponse.json({ error: 'secretkey not correct' }, { status: 401 })
   }
