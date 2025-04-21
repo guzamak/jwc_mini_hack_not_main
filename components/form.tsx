@@ -41,7 +41,7 @@ type FormProps = {
 };
 export default function Form({ onLogout }: FormProps) {
   const [imageData, setImageData] = useState<string | null>(null);
-  const [prefix, setPrefix] = useState<"นาย" | "นาง" | "นางสาว">();
+  const [prefix, setPrefix] = useState<string>();
   const [firstname, setFirstname] = useState<string>();
   const [surname, setsurname] = useState<string>();
   const [nickname, setNickname] = useState<string>();
@@ -49,7 +49,7 @@ export default function Form({ onLogout }: FormProps) {
   const [email, setEmail] = useState<string>();
   const [phone, setPhone] = useState<string>();
   const [province, setProvince] = useState<string>();
-  const [grade, setGrade] = useState<"ม_4" | "ม_5" | "ม_6" | "ปวช">();
+  const [grade, setGrade] = useState<string>();
   const [school, setSchool] = useState<string>();
   const [etc, setEtc] = useState<string>();
   const [ans, setAns] = useState<Array<string>>(
