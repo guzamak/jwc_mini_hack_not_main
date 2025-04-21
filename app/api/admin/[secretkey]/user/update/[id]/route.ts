@@ -3,8 +3,8 @@ import prisma from '@/lib/prisma'
 
 
 
-export async function PUT(req: NextRequest,  context: { params: { secretkey: string, id: string } }) {
-  const { secretkey, id } = context.params;
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ secretkey: string, id: string }>} ) {
+  const { secretkey, id } = await params;
 
   if (secretkey !== process.env.SECRETKEY) {
     return NextResponse.json({ error: 'secretkey not correct' }, { status: 401 })
