@@ -382,9 +382,9 @@ export default function Form({ onLogout }: FormProps) {
                       <PopoverContent align="start" className="w-auto p-0 bg-white ">
                         <CalendarRaw
                           mode="single"
-                          selected={date}
+                          selected={date as any}
                           onSelect={(e) => {
-                            onDateChange(e);
+                            onDateChange(e as any);
                           }}
                           initialFocus
                           fromYear={2000}
